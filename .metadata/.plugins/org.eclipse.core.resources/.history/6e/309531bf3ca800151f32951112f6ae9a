@@ -1,0 +1,98 @@
+	function getProveedores(){
+		 
+		 $('#id_proveedor').empty();
+		  
+		  
+		  $('#id_proveedor').select2();
+		  
+		  $('#id_proveedor').append($('<option>', {
+              value: "",
+              text: "SELECCIONAR"
+              }));
+		  
+	    	$.post( "getEmpresasAsync", {esProv:"1",estadoVigNoVig:1 })
+	        .done(function( data ) {
+	        		var proveedores_arr = $.parseJSON(data);
+	          		
+	          		$.each( proveedores_arr, function( key, prov ) {
+	          			
+	          		  $('#id_proveedor').append($('<option>', {
+                       value: prov.id,
+                       text: prov.nombre_nof  
+                       }));
+                  
+	          		});
+	          		
+	        });
+	    	
+	    	$('#id_proveedor').select2("val","");
+	    }
+	
+
+	function getCompradores(){
+		 
+		  $('#id_comprador').empty();
+		  
+		  $('#id_comprador').select2();
+		  
+		  $('#id_comprador').append($('<option>', {
+            value: "",
+            text: "SELECCIONAR"
+            }));
+		  
+	    	$.post( "getEmpresasAsync", {esCli:"1",estadoVigNoVig:1,relacionada:1 })
+	        .done(function( data ) {
+	        		var proveedores_arr = $.parseJSON(data);
+	          		
+	          		$.each( proveedores_arr, function( key, prov ) {
+	          			
+	          		  $('#id_comprador').append($('<option>', {
+                     value: prov.id,
+                     text: prov.nombre_nof  
+                     }));
+                
+	          		});
+	          		
+	        });
+	    	
+	    	$('#id_comprador').select2("val","");
+	}
+	
+	function getOCs(id_comprador,id_proveedor){
+		$('#fbody').hide();
+		$('#fbodyLoading').show();
+      	
+        $.post( "getOCsAsync", { id_comprador:id_comprador,id_proveedor:id_proveedor })
+        .done(function( data ) {
+        	$('#fbody').empty();	
+        	
+          		var ocs_arr = $.parseJSON(data);
+          		
+          		$.each( ocs_arr, function( key, oc ) {
+          			
+          			
+          			var line="<tr class='hov' style='font-size:20px'  >";
+          			
+          			line+="<td class='detailID' >"+oc.nro+"</td>";
+          			line+="<td class='detailProveedorNombreNof' >"+oc.proveedor.nombre_nof+"</td>";
+          			line+="<td class='detailUsuNombre' >&nbsp;</td>";
+          			line+="<td class='detailFecha' >"+oc.fec_emision+"</td>";
+          			line+="<td class='detailProveedorNombreNof' >"+oc.comprador.nombre_nof+"</td>";
+          			
+          			line+="<td class='detailProdPrecio' >"+oc.neto+"</td>";
+          			line+="<td class='detailSBEmpresa' >"+oc.estado_recepcion.nombre+"</td>";
+          			line+="<td >&nbsp;</td>";
+          			
+          			
+          			
+          			line+="</tr>";
+          			
+          			$('#fbody').append(line);
+          		 
+          		});
+          		
+          		$('#fbodyLoading').hide();
+          		$('#fbody').show();
+          		
+        });
+    }

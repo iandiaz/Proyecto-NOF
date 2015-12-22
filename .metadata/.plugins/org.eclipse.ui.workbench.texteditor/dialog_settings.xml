@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="265" key="DIALOG_WIDTH"/>
+		<item value="122" key="DIALOG_Y_ORIGIN"/>
+		<item value="399" key="DIALOG_HEIGHT"/>
+		<item value="120" key="DIALOG_X_ORIGIN"/>
+		<item value="1|.SF NS Text|11.0|0|COCOA|1|.SFNSText-Regular" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="true" key="wrap"/>
+		<item value="false" key="isRegEx"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="false" key="wholeword"/>
+		<item value="VOLVER" key="selection"/>
+		<list key="findhistory">
+			<item value="volver"/>
+			<item value="fecha emis"/>
+			<item value="fecha emisoi"/>
+			<item value="show"/>
+			<item value="insert into"/>
+			<item value="grabar"/>
+			<item value="getEmpresas"/>
+			<item value="valor t/"/>
+		</list>
+		<list key="replacehistory">
+			<item value=""/>
+			<item value="tipo_contador_principal"/>
+			<item value="&quot;)"/>
+			<item value="(&quot;"/>
+			<item value="+&quot;"/>
+			<item value="&quot;+"/>
+			<item value="&apos;"/>
+			<item value=".val"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.GotoLineAction$GotoLineDialog_dialogBounds">
+		<item value="253" key="DIALOG_Y_ORIGIN"/>
+		<item value="389" key="DIALOG_X_ORIGIN"/>
+	</section>
+</section>

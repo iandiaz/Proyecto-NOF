@@ -1,0 +1,548 @@
+
+
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.Writer;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Calendar;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.Statement;
+
+/**
+ * Servlet implementation class ifac_servotros
+ */
+@WebServlet("/ifac_servotros")
+public class ifac_servotros extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ifac_servotros() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+    
+    public boolean validateSession(HttpServletRequest request, HttpServletResponse response){
+		
+  		boolean user_in_session=false;
+  		Cookie [] cookies=request.getCookies();
+  		
+  		if (cookies != null) {
+  		    for (Cookie cookie : cookies) {
+  		        //work with cookies
+  		    	 //System.out.println("cookie: "+cookie.getName());
+  		    	if(cookie.getName().equals("Usuarios_id")) user_in_session=true;
+  		    }
+  		}
+  		//refrescamos la session 
+  		
+  		if (user_in_session && cookies != null) {
+  		    for (Cookie cookie : cookies) {
+  		        //work with cookies
+  		    	 //System.out.println("cookie: "+cookie.getName());
+  		    	if(cookie.getName().equals("Usuarios_id")) {cookie.setMaxAge(Constantes.T_SESSION);cookie.setPath("/");response.addCookie(cookie);}
+  		    	if(cookie.getName().equals("Usuarios_nombre")) {cookie.setMaxAge(Constantes.T_SESSION);cookie.setPath("/");response.addCookie(cookie);}
+  		    	if(cookie.getName().equals("Usuarios_login")) {cookie.setMaxAge(Constantes.T_SESSION);cookie.setPath("/");response.addCookie(cookie);}
+  		    	if(cookie.getName().equals("Usuarios_email")) {cookie.setMaxAge(Constantes.T_SESSION);cookie.setPath("/");response.addCookie(cookie);}
+  		    	if(cookie.getName().equals("tipo_usu_id")) {cookie.setMaxAge(Constantes.T_SESSION);cookie.setPath("/");response.addCookie(cookie);}
+  		    }
+  		}
+  		
+  		
+  		return user_in_session;
+  		
+      }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		if(validateSession(request, response)){
+			
+			 mt(request,response);
+		}
+		else response.sendRedirect("/001/");
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		if(validateSession(request, response)){
+			
+			 mt(request,response);
+		}
+		else response.sendRedirect("/001/");
+	}
+	
+	public void mt(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+		
+		PrintWriter out = response.getWriter();		
+		
+		// logout
+		Cookie [] cookies=request.getCookies();
+		if(request.getParameter("logout") !=  null){
+			if (cookies != null) {
+			    for (Cookie cookie : cookies) {
+			        //work with cookies
+			    	 System.out.println("cookie logout: "+cookie.getName());
+			    	if(cookie.getName().equals("Usuarios_id")) {cookie.setMaxAge(0);cookie.setPath("/");response.addCookie(cookie);}
+			    }
+			}
+				response.sendRedirect("/001/");
+				return;
+		}
+		//fin logout
+		String id_iusuario="";
+		if (cookies != null) {
+		    for (Cookie cookie : cookies) {
+		        //work with cookies
+		    	 //System.out.println("cookie: "+cookie.getName()+"-"+cookie.getValue());
+		    	if(cookie.getName().equals("Usuarios_id") && cookie.getValue()!=null) id_iusuario=cookie.getValue();
+		    }
+		}
+
+		String Usuarios_nombre="";
+		Calendar ahoraCal = Calendar.getInstance();
+		String fecha=ahoraCal.get(Calendar.DATE)+"-"+(ahoraCal.get(Calendar.MONTH)+1)+"-"+ahoraCal.get(Calendar.YEAR);
+		String hora=ahoraCal.get(Calendar.HOUR_OF_DAY)+":"+ahoraCal.get(Calendar.MINUTE)+":"+ahoraCal.get(Calendar.SECOND);
+		if (cookies != null) {
+		    for (Cookie cookie : cookies) {
+		        //work with cookies
+		    	 //System.out.println("cookie: "+cookie.getName());
+		    	if(cookie.getName().equals("Usuarios_nombre")) Usuarios_nombre=cookie.getValue()+" "+fecha+" "+hora;
+		    }
+		}		
+		request.setAttribute("usuname", Usuarios_nombre);
+		request.setAttribute("usuname", Usuarios_nombre);
+		//grabar
+
+		if(request.getParameter("grabar") != null){
+			Statement stategrabar = null;	
+			ResultSet RS_DATOS = null;
+			ResultSet RS_DET = null;
+			try {
+				Statement state = null;
+				String FID=request.getParameter("fact_id");
+				String TDTE=request.getParameter("tdte");
+						
+				//import java.io.IOException;
+				Class.forName("com.mysql.jdbc.Driver");
+			    Connection conexion=(Connection) DriverManager.getConnection
+			    		("jdbc:mysql://"+Constantes.SERVER+"/"+Constantes.CATALOGO,Constantes.USER,Constantes.PASS);
+			    state = (Statement) ((java.sql.Connection) conexion).createStatement();
+				stategrabar = (Statement) ((java.sql.Connection) conexion).createStatement();
+
+				//System.out.println("Docs: "+FID);
+				
+				String SQL_DATOS = "SELECT f.fac_servotrostipodte as fac_servotros_tipodte, DATE_FORMAT(f.fac_servotros_fecfac, '%Y-%m-%d') as FACT_FECHA, "
+						+ "DATE_FORMAT(f.fac_servotros_fecfac, '%Y-%m-%d') as FACT_FECHA_EMISION, f.fac_servotros_ref as factura_referencia, "
+						+ "f.fac_servotros_obs, "
+						+ "C2.empresas_rut as CLPR_RUT, "
+						+ "C2.empresas_razonsocial as CLPR_RAZON_SOCIAL, "
+						+ "C2.empresas_giro as CLPR_GIRO, "
+						+ "DIRECCION.DIRE_DIRECCION, "
+						+ "COMUNA.COMU_NOMBRE, "
+						+ "DIRECCION.DIRE_CIUDAD, "
+						+ "f.fac_servotros_condiciones, "
+						+ "CONTACTO.CONT_EMAIL, "
+						+ "		CONCAT_WS(' ',`CONTACTO`.CONT_NOMBRE,`CONTACTO`.CONT_APEP,`CONTACTO`.CONT_APEM) AS CONT_NOMBRE, "
+	 					
+						+ "f.fac_servotros_total, f.fac_servotros_totalfinal, f.fac_servotros_descuento, "
+						+ "f.fac_servotros_neto, f.fac_servotros_iva "
+						+ " , 	if(f.`tipo_dteref` is null,'NINGUNA',f.`tipo_dteref`) as  tipo_dteref  "
+						
+						+ " , IF(f.`folioref` is null ,'',f.`folioref`) as  folioref "
+						+ "	,	IF(f.`fec_ref` is null,'',DATE_FORMAT(f.`fec_ref`,'%Y-%m-%d')) as fec_ref  "
+
+						+ "	, if(f.`fac_servotros_tcambio` is null,'',f.`fac_servotros_tcambio`) AS fac_servotros_tcambio"
+						+ " , f.fac_servotros_glosa_desc  "
+
+			    		
+						+ " FROM factura_servotros f"
+						+ " LEFT JOIN empresas as C1 ON f.fac_servotros_emisor = C1.empresas_id"
+						+ " LEFT JOIN empresas as C2 ON f.empresas_id = C2.empresas_id"
+						+ " LEFT JOIN DIRECCION ON f.DIRE_ID = DIRECCION.DIRE_ID"
+						+ " LEFT JOIN COMUNA ON DIRECCION.COMU_ID = COMUNA.COMU_ID"
+						+ " LEFT JOIN REGION ON COMUNA.REGI_ID = REGION.REGI_ID"
+						+ " LEFT JOIN CONTACTO ON f.CONT_ID = CONTACTO.CONT_ID"
+						//+ " LEFT JOIN USUARIOS ON f.FACT_USU_EMISION = USUARIOs.USUARIOS_ID"
+						+ " WHERE f.fac_servotros_id ="+FID;
+				//System.out.println(SQL_DATOS);
+				RS_DATOS =  state.executeQuery(SQL_DATOS);
+				
+				RS_DATOS.next();
+				String tipodte=RS_DATOS.getString("fac_servotros_tipodte");
+				String fecha_fac = RS_DATOS.getString("FACT_FECHA");
+				String condiciones = RS_DATOS.getString("fac_servotros_condiciones").replace(";", "");
+				
+				String OBS0 = RS_DATOS.getString("fac_servotros_condiciones").replace(";", "");
+				
+				String OBS1 = RS_DATOS.getString("CONT_NOMBRE").replace(";", "")+"-"+RS_DATOS.getString("CONT_EMAIL").replace(";", "");
+				String OBS2 = RS_DATOS.getString("fac_servotros_obs").replace(";", "")+"-TC:"+RS_DATOS.getString("fac_servotros_tcambio").replace(";", "");
+			
+				
+				String netodesc = RS_DATOS.getString("fac_servotros_total");
+				String total = RS_DATOS.getString("fac_servotros_totalfinal");
+				String desc = RS_DATOS.getString("fac_servotros_descuento");
+				String glosa_desc = RS_DATOS.getString("fac_servotros_glosa_desc").replace(";", "");
+				String neto = RS_DATOS.getString("fac_servotros_neto");
+				String iva = RS_DATOS.getString("fac_servotros_iva");
+				
+				String tipo_dteref = RS_DATOS.getString("tipo_dteref");
+				String folioref = RS_DATOS.getString("folioref");
+				String fec_ref = RS_DATOS.getString("fec_ref");
+				
+				
+				//TipoDTE;Folio;FechaEmision;TipoDespacho;IndTraslado;RUTCliente;RSClienente;GiroCliente;DirCliente;ComCliente;CiuCliente;Email;
+			    String encabezado="->Encabezado<-\r\n"+
+			    		RS_DATOS.getString("fac_servotros_tipodte")+";0;"+RS_DATOS.getString("FACT_FECHA_EMISION")+";0;0;"+
+			    		RS_DATOS.getString("CLPR_RUT")+";"+RS_DATOS.getString("CLPR_RAZON_SOCIAL").replace(";", "")+";"+RS_DATOS.getString("CLPR_GIRO").replace(";", "")+";"+
+			    		RS_DATOS.getString("DIRE_DIRECCION").replace(";", "")+";"+RS_DATOS.getString("COMU_NOMBRE")+";"+RS_DATOS.getString("DIRE_CIUDAD")+";"+
+			    		RS_DATOS.getString("CONT_EMAIL")+";\r\n";
+			    
+			    
+			    String SQL_INSERTe = "INSERT INTO dte_encabezado (TipoDTE, Folio,FechaEmision, TipoDespacho, IndTraslado, "
+			    		+ "RUTCliente, RSCliente, GiroCliente, "
+			    		+ "DirCliente, ComCliente, CiuCliente, Email) "
+			    		+ "VALUES ('"+RS_DATOS.getString("fac_servotros_tipodte")+"','0','"+RS_DATOS.getString("FACT_FECHA_EMISION")+"','0','0'"
+			    		+ ",'"+RS_DATOS.getString("CLPR_RUT")+"','"+RS_DATOS.getString("CLPR_RAZON_SOCIAL")+"','"+RS_DATOS.getString("CLPR_GIRO")+"'"
+			    		+ ",'"+RS_DATOS.getString("DIRE_DIRECCION")+"','"+RS_DATOS.getString("COMU_NOMBRE")+"','"+RS_DATOS.getString("DIRE_CIUDAD")+"'"
+			    		+ ",'"+RS_DATOS.getString("CONT_EMAIL")+"')";
+			    //System.out.println("SQL Instert: "+SQL_INSERTe);
+			    stategrabar.executeUpdate(SQL_INSERTe,Statement.RETURN_GENERATED_KEYS);
+
+			    ResultSet generatedKeys = null;
+	    		generatedKeys = stategrabar.getGeneratedKeys();
+	    		String id_usu_last="";
+	    		if (generatedKeys.next()) {
+	    			id_usu_last=generatedKeys.getString(1);
+	    		}
+			    //stategrabar.close();
+			   
+			    
+			    String SQL_UPFAC = "UPDATE factura_servotros SET id_dte = "+id_usu_last+" WHERE fac_servotros_id = "+FID;
+			    //System.out.println("SQL Instert: "+SQL_UPFAC);
+			    stategrabar.executeUpdate(SQL_UPFAC);
+
+				String SQL_DET = "SELECT "
+						+ " d.dfso_id as ALT_ID,"
+						+ " d.dfso_descripcion as PROD_DESC_CORTO,"
+						+ " '' as PROD_PN_TLI_CODFAB, "
+						+ " '' as PROD_DESC_LARGO,"
+						+ " d.dfso_valor as DETI_UNITARIO"
+						+ " FROM detail_fac_servotros d "
+						//+ " INNER JOIN activo ON d.ALT_ID = activo.ALT_ID"
+						//+ " INNER JOIN producto ON activo.PROD_ID = producto.PROD_ID"
+						+ " WHERE d.fac_servotros_id= "+FID;
+				RS_DET =  state.executeQuery(SQL_DET);
+				
+				
+				String SQL_DET2 = "SELECT count(*) as n"
+						+ " FROM detail_fac_servotros d "
+						//+ " INNER JOIN activo ON d.ALT_ID = activo.ALT_ID"
+						//+ " INNER JOIN producto ON activo.PROD_ID = producto.PROD_ID"
+						+ " WHERE d.fac_servotros_id= "+FID;
+				ResultSet RS_DET2 = state.executeQuery(SQL_DET2);
+				
+				
+				RS_DET2.next();
+				
+				String numlines=RS_DET2.getString("n");
+	    
+				Integer c=1; String exento="0";
+			
+				String detalle="->Detalle<-\r\n";
+				while(RS_DET.next()){
+					
+					
+					int neto_de=RS_DET.getInt("DETI_UNITARIO");
+					int exento_det=RS_DET.getInt("DETI_UNITARIO");
+					
+					if(tipodte.equals("33")){  exento_det=0; }
+					if(tipodte.equals("34")){  neto_de=0;  }
+					
+					String descLarga="";
+					
+					
+					if(Integer.parseInt(desc)>0 && c==numlines)
+					detalle+=c+";"+RS_DET.getString("ALT_ID")+";"+RS_DET.getString("PROD_DESC_CORTO").replace(";", "").toUpperCase()+";1;"
+		            		+ RS_DET.getString("DETI_UNITARIO")+";0;0;0;0;"+exento_det+";"
+		            		+ neto_de+";INT1;UN;;\r\n";
+					
+					String SQL_INSERTd = "INSERT INTO dte_detalle (id_enc, NroLinea, Codigo, Descripcion, Cantidad, "
+							+ "Precio, PorcDescto, ValorDescto, PorcRecgo, ValorRecgo, ValorExento, Valor, "
+							+ "TipoCodigo, UniMedida, DescLarga) "
+				    		+ "VALUES ("+id_usu_last+","+c+",'"+RS_DET.getString("ALT_ID")+"','"+RS_DET.getString("PROD_DESC_CORTO")+"',1,"
+				    		+ ""+RS_DET.getString("DETI_UNITARIO")+",0,0,0,0,'"+RS_DET.getString("DETI_UNITARIO")+"',"+RS_DET.getString("DETI_UNITARIO")+","
+				    		+ "'INT1','UN','')";
+				    //NroLinea;Codigo;Descripcion;Cantidad;Precio;PorcDescto;ValorDescto;PorcRecgo;ValorRecgo;ValorExento;Valor;TipoCodigo;UniMedida;DescLarga;
+				    System.out.println(SQL_INSERTd);
+				    stategrabar.executeUpdate(SQL_INSERTd);
+					c=c+1;
+				}
+				
+				
+				
+
+				/*if(Integer.parseInt(desc)>0){
+					
+					detalle+=c+";DESC;"+glosa_desc.replace(";", "").toUpperCase()+";1;"
+		            		+ "0;0;"+desc+";0;0;0;"
+		            		+ "0;INT1;UN;"
+		            		+ glosa_desc.replace(";", "").toUpperCase()+";\r\n";
+					
+					
+				}*/
+				String ivapercent="19";
+				if(tipodte.equals("33")){ neto=neto; exento="0"; }
+				if(tipodte.equals("34")){  exento=neto;neto="0";ivapercent="0"; }
+				
+				String totales="->Totales<-\r\n"+"0;"+desc+";0;0;"+neto+";"+exento+";"+ivapercent+";"+iva+";"+total+";\r\n";
+				//PorcDesctoTot;ValorDesctoTot;PorcRecgoTot;ValorRecgoTot;Neto;Exento;TasaIVA;IVA;Total;
+			    String SQL_INSERTt = "INSERT INTO dte_totales (id_enc, PorcDesctoTot, ValorDesctoTot, PorcRecgoTot, ValorRecgoTot, "
+			    		+ "Neto, Exento, TasaIVA, IVA, Total)"
+			    		+ " VALUES ("+id_usu_last+",0,"+desc+",0,0,"+neto+","+exento+","+ivapercent+","+iva+","+total+")";
+			    System.out.println("SQL Instert: "+SQL_INSERTt);
+			    stategrabar.executeUpdate(SQL_INSERTt);
+			    
+			    
+			    String referencia="";
+			    
+			    if(!tipo_dteref.equals("") && !tipo_dteref.equals("NINGUNA")){
+			    	    referencia="->Referencia<-\r\n"+"1;"+tipo_dteref+";"+folioref+";"+fec_ref+";0;0;\r\n";
+			    	    
+			    	    
+			    	    String fec_ref_in="null";
+			    	    
+			    	    if(!fec_ref.equals("")){
+			    	    	fec_ref_in="'"+fec_ref+"'";
+			    	    }
+			    	   
+					    //NroLineaRef;TipoDTERef;FolioRef;FechaRef;CodigoRef;RazonRef;
+					    String SQL_INSERTr = "INSERT INTO dte_referencia (id_enc, NroLineaRef, TipoDTERef, FolioRef, FechaRef, CodigoRef, RazonRef) "
+					    		+ "VALUES ("+id_usu_last+",1,'"+tipo_dteref+"','"+folioref+"',"+fec_ref_in+",'0','0')";
+					    System.out.println("SQL Instert: "+SQL_INSERTr);
+					    stategrabar.executeUpdate(SQL_INSERTr);
+				  
+			    	
+			    }
+			    
+			    String obs="->Observacion<-\r\n"+condiciones+";\r\n"+OBS1+";\r\n"+OBS2+";";
+			    //Linea1;Linea2;Linea3;
+			    String SQL_INSERTo = "INSERT INTO dte_observacion (id_enc, Linea1, Linea2, Linea3) "
+			    		+ "VALUES ("+id_usu_last+",'"+condiciones+"','"+OBS1+"','"+OBS2+"')";
+			    System.out.println("SQL Instert: "+SQL_INSERTo);
+			    stategrabar.executeUpdate(SQL_INSERTo);
+			    stategrabar.close();
+				
+	        	String data = encabezado+""+totales+""+detalle+""+referencia+""+obs+"\r\n";
+	        	
+	        	Writer outFile = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(""+Constantes.DIR_FILES+tipodte+"_804_"+FID+".txt"),"UTF-8"));
+				outFile.write(data);
+				outFile.close();
+				 RS_DATOS.close();
+				 RS_DET.close();
+				conexion.close();
+					    
+				RequestDispatcher rd_up = request.getRequestDispatcher("menuguias?Exito=OK");
+				rd_up.forward(request, response);
+			        	
+			}catch(Exception ex){
+				ex.printStackTrace();
+				out.println("Error: "+ex);
+			}
+		}else{
+		
+			try {
+				Statement state = null;
+				ResultSet RS_DATOS = null;
+				ResultSet RS_DATOSD = null;
+				
+				//import java.io.IOException;
+				Class.forName("com.mysql.jdbc.Driver");
+	    		Connection conexion=(Connection) DriverManager.getConnection
+	    	    		("jdbc:mysql://"+Constantes.SERVER+"/"+Constantes.CATALOGO,Constantes.USER,Constantes.PASS);
+	    		state = (Statement) ((java.sql.Connection) conexion).createStatement();
+	    		
+	    		String GID = request.getParameter("d_id");
+	    		String TDTE = request.getParameter("tdte");
+
+	    		String SQL_CAB = "SELECT "
+			    		+ "		`factura_servotros`.`fac_servotros_folio` as fac_servotros_folio, "
+			    		+ "		IF(`factura_servotros`.`id_dte` is null , '1','0') as dte , "
+			    		+ "		DATE_FORMAT(`factura_servotros`.`fac_servotros_fecfac`, '%d-%m-%Y') AS FAC_FECHA ,"
+			    		+ "		DATE_FORMAT(`factura_servotros`.`fac_servotros_fecvencimiento`, '%d-%m-%Y') AS fac_servotros_fecvencimiento ,"
+			    		+ "		emisor.empresas_nombrenof as empresas_nombrenofemisor  ,"
+			    		+ "		`factura_servotros`.`fac_servotrostipodte` as fac_servotros_tipodte  ,"
+			    		+ "		cliente.empresas_razonsocial as empresas_razonsocialcliente, "
+			    		+ "		cliente.empresas_rut as empresas_rutcliente,"
+			    		+ "		cliente.empresas_id as empresas_idcliente,"
+			    		+ "		cliente.empresas_nombrenof as empresas_nombrenofcliente,"
+			    		+ "		`factura_servotros`.`fac_servotros_obs` as fac_servotros_obs,"
+			    		 
+			    		+ "		`factura_servotros`.`fac_servotros_condiciones` as fac_servotros_condiciones, "
+			    		+ "		`factura_servotros`.`fac_servotros_ref` as fac_servotros_ref, "
+			    		+ "		`factura_servotros`.`fac_servotros_tcambio` AS fac_servim_tcambio, "
+			    		
++ "		IF(`factura_servotros`.`tipo_dteref` is null,'NINGUNA',`factura_servotros`.`tipo_dteref`) as tipo_dteref, "
++ "		IF(`factura_servotros`.`folioref` is null ,'',`factura_servotros`.`folioref`) as  folioref, "
++ "		IF(`factura_servotros`.`fec_ref` is null,'',`factura_servotros`.`fec_ref`) as fec_ref, "
+
+						
+						+ "		`contacto`.`CONT_EMAIL`, "
+						+ "		CONCAT_WS(' ',`CONTACTO`.CONT_NOMBRE,`CONTACTO`.CONT_APEP,`CONTACTO`.CONT_APEM) AS CONT_NOMBRE, "
+	 					+ "		`contacto`.`CONT_TELEFONO`,  "
+						+ "		`contacto`.`CONT_TELEFONOC`,  "
+						
+						+ "		`direccion`.`DIRE_DIRECCION` , "
+						+ "		`direccion`.`DIRE_CIUDAD`,  "
+						+ "		`comuna`.`COMU_NOMBRE`,  "
+						+ "		`region`.`REGI_NOMBRE`, "
+						+ "		`factura_servotros`.`fac_servotros_total` as fac_servotros_total , "
+						+ "		`factura_servotros`.`fac_servotros_totalfinal`, "
+						+ "		`factura_servotros`.`fac_servotros_descuento`, "
+			    		+ "		`factura_servotros`.`fac_servotros_glosa_desc`, "
+			    		+ "		`factura_servotros`.`fac_servotros_tcambio` AS fac_servim_tcambio, "
+
+			    		+ "		`factura_servotros`.`fac_servotros_estado`, "
+			    		+ "		CONCAT_WS(' ',`usuarios`.`Usuarios_nombre`,`usuarios`.`Usuarios_ape_p`,`usuarios`.`Usuarios_ape_m`) AS Usuarios_nombre_com, "
+			    		+ " factura_servotros.fac_servotros_neto, factura_servotros.fac_servotros_iva "
+
+						
+						+ "	FROM"
+			    		+ "		`factura_servotros`"
+			    		+ "	INNER JOIN `empresas` emisor ON `emisor`.`empresas_id` = `factura_servotros`.`fac_servotros_emisor` "
+			    		+ " INNER JOIN `empresas` cliente ON cliente.empresas_id = `factura_servotros`.`empresas_id` "
+			    		+ " INNER JOIN `contacto` ON `contacto`.`CONT_ID` = `factura_servotros`.`CONT_ID` "
+			    		+ " INNER JOIN `direccion` ON `direccion`.`DIRE_ID` = `factura_servotros`.`dire_id` "
+			    		+ " INNER JOIN `comuna` ON `comuna`.`COMU_ID` = `direccion`.`COMU_ID` "
+			    		+ " INNER JOIN `region` ON `region`.`REGI_ID` = `comuna`.`REGI_ID` "
+			    		+ " INNER JOIN `usuarios` ON `usuarios`.`Usuarios_id` = cliente.`responsable_id` "
+				    	
+			    		
+			    		
+
+			    		+ "	WHERE"
+			    		+ "		`factura_servotros`.`fac_servotros_id`= "+GID;
+			    System.out.println(SQL_CAB);
+			    ResultSet CAB_RS = state.executeQuery(SQL_CAB);
+			    if(CAB_RS.next()){
+			    	String estado_sii="";
+			    	if(CAB_RS.getString("dte").equals("0")){estado_sii = "ENVIADA";}
+					if(CAB_RS.getString("dte").equals("1")){estado_sii = "PARA ENVIAR";}
+			    	request.setAttribute("estado_sii", estado_sii);
+			    	request.setAttribute("folio", CAB_RS.getString("fac_servotros_folio"));
+			    	request.setAttribute("FAC_FECHA", CAB_RS.getString("FAC_FECHA"));
+			    	request.setAttribute("fac_servotros_condiciones", CAB_RS.getString("fac_servotros_condiciones"));
+			    	request.setAttribute("fac_servotros_fecvencimiento", CAB_RS.getString("fac_servotros_fecvencimiento"));
+			    	request.setAttribute("empresas_nombrenofemisor", CAB_RS.getString("empresas_nombrenofemisor"));
+			    	request.setAttribute("fac_servotros_tipodte", CAB_RS.getString("fac_servotros_tipodte"));
+			    	request.setAttribute("empresas_razonsocialcliente", CAB_RS.getString("empresas_razonsocialcliente"));
+			    	request.setAttribute("empresas_idcliente", CAB_RS.getString("empresas_idcliente"));
+			    	request.setAttribute("empresas_rutcliente", CAB_RS.getString("empresas_rutcliente"));
+			    	request.setAttribute("empresas_nombrenofcliente", CAB_RS.getString("empresas_nombrenofcliente"));
+			    	request.setAttribute("fac_servim_tcambio", CAB_RS.getString("fac_servim_tcambio"));
+			    	
+			    	request.setAttribute("fac_servotros_obs", CAB_RS.getString("fac_servotros_obs"));
+			    	
+			    	request.setAttribute("CONT_EMAIL", CAB_RS.getString("CONT_EMAIL"));
+			    	request.setAttribute("CONT_NOMBRE", CAB_RS.getString("CONT_NOMBRE"));
+			    	request.setAttribute("CONT_TELEFONO", CAB_RS.getString("CONT_TELEFONO"));
+			    	request.setAttribute("CONT_TELEFONOC", CAB_RS.getString("CONT_TELEFONOC"));
+			    	
+			    	
+			    	request.setAttribute("PERS_NOMBRE", CAB_RS.getString("Usuarios_nombre_com"));
+			    	request.setAttribute("DIRE_DIRECCION", CAB_RS.getString("DIRE_DIRECCION"));
+			    	request.setAttribute("DIRE_CIUDAD", CAB_RS.getString("DIRE_CIUDAD"));
+			    	request.setAttribute("COMU_NOMBRE", CAB_RS.getString("COMU_NOMBRE"));
+			    	request.setAttribute("REGI_NOMBRE", CAB_RS.getString("REGI_NOMBRE"));
+			    	request.setAttribute("fac_servotros_total", CAB_RS.getString("fac_servotros_total"));
+			    	
+			    	request.setAttribute("fac_servotros_glosa_desc", CAB_RS.getString("fac_servotros_glosa_desc"));
+			    	request.setAttribute("fac_servotros_estado", CAB_RS.getString("fac_servotros_estado"));
+			    	request.setAttribute("DESC", CAB_RS.getString("fac_servotros_descuento"));
+			    	
+			    	request.setAttribute("fac_servim_tcambio", CAB_RS.getString("fac_servim_tcambio"));
+			    	request.setAttribute("fac_servotros_neto", CAB_RS.getString("fac_servotros_neto"));
+			    	request.setAttribute("fac_servotros_iva", CAB_RS.getString("fac_servotros_iva"));
+			    	request.setAttribute("fac_servotros_totalfinal", CAB_RS.getString("fac_servotros_totalfinal"));
+			    	
+			    	request.setAttribute("fec_ref", CAB_RS.getString("fec_ref"));
+			    	request.setAttribute("folioref", CAB_RS.getString("folioref"));
+			    	request.setAttribute("tipo_dteref", CAB_RS.getString("tipo_dteref"));
+
+			    }
+			    CAB_RS.close();
+			    
+			    String SQL_DET = "SELECT * FROM detail_fac_servotros WHERE fac_servotros_id = "+GID;
+			    //System.out.println(SQL_DET);
+			    ResultSet DET_RS = state.executeQuery(SQL_DET);
+			    ArrayList<String> prod = new ArrayList<String>();
+			    Integer c=0;
+			    while(DET_RS.next()){ prod.add(c+"/"+DET_RS.getString("dfso_descripcion")+"/"+DET_RS.getString("dfso_valor")); c=c+1;}
+			    DET_RS.close();	
+			    String[] ar_prod = new String[5];
+			    for(int x=0; x < prod.size(); x++){
+			    	//System.out.println(prod.get(x));
+			    		ar_prod[x]=prod.get(x);	
+			    }
+			    request.setAttribute("ar_prod", ar_prod);
+//			   
+	            conexion.close();
+	            
+	 		    request.setAttribute("fact_id", GID);
+	 		    request.setAttribute("tdte", TDTE);
+			}catch(Exception ex){
+			    out.println("ERROR: "+ex);
+			    ex.printStackTrace();
+			}
+		//fin grabar
+			
+		RequestDispatcher rd = request.getRequestDispatcher("ifac_servotros.jsp");
+        rd.forward(request, response);
+		
+		}
+		
+	}
+
+}

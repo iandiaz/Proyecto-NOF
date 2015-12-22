@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="true" key="J2EE_EXPORT_OVERWRITE"/>
+	<item value="NOF025EAR" key="LASTEARNAME_"/>
+	<item value="true" key="J2EE_EXPORT_SOURCE"/>
+	<list key="J2EE_IMPORT_EAR">
+		<item value="/Users/David/Documents/Umbra/Proyectos/newoffice/NOF302EAR_v7.ear"/>
+		<item value="/Users/David/Documents/Umbra/Proyectos/newoffice/NOF999EAR_v14.ear"/>
+		<item value="/Users/David/Documents/Umbra/Proyectos/newoffice/NOF014EAR_v6.ear"/>
+		<item value="/Users/David/Documents/Umbra/Proyectos/newoffice/NOF823EAR_v36.ear"/>
+		<item value="/Users/David/Documents/Umbra/Proyectos/newoffice/NOF007EAR_v39.ear"/>
+		<item value="/Users/David/Documents/Umbra/Proyectos/newoffice/NOFwebserverEAR_v3.ear"/>
+	</list>
+	<list key="J2EE_EXPORT_JST_EAR">
+		<item value="/Users/David/Documents/Umbra/Proyectos/newoffice/NOF025EAR_v2.ear"/>
+		<item value="/Users/David/Documents/Umbra/Proyectos/newoffice/NOF025EAR_v1.ear"/>
+		<item value="/Users/David/Documents/Umbra/Proyectos/newoffice/NOF024EAR_v6.ear"/>
+		<item value="/Users/David/Documents/Umbra/Proyectos/newoffice/NOF024EAR_5.ear"/>
+		<item value="/Users/David/Documents/Umbra/Proyectos/newoffice/NOF024EAR_v4.ear"/>
+		<item value="/Users/David/Documents/Umbra/Proyectos/newoffice/NOF024EAR_v3.ear"/>
+	</list>
+	<list key="J2EE_EXPORT_JST_WEB">
+		<item value="/Users/David/Documents/Umbra/Proyectos/newoffice/004.war"/>
+		<item value="/Users/David/Documents/Umbra/Proyectos/newoffice/302.war"/>
+		<item value="/Users/David/Documents/Umbra/Proyectos/newoffice/070.war"/>
+		<item value="/Users/David/Documents/Umbra/Proyectos/newoffice/030.war"/>
+		<item value="/Users/David/Documents/Umbra/Proyectos/newoffice/025.war"/>
+		<item value="/Users/David/Documents/Umbra/Proyectos/newoffice/024.war"/>
+	</list>
+	<list key="MRU_RUNTIME_STORE">
+		<item value="NULL_RUNTIME"/>
+		<item value="Apache Tomcat v7.0"/>
+	</list>
+</section>

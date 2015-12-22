@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://webserver" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://webserver" xmlns:intf="http://webserver" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://webserver" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="inputFactOC">
+    <complexType>
+     <sequence>
+      <element name="fechadoc" type="xsd:string"/>
+      <element name="rut" type="xsd:string"/>
+      <element name="sucursal" type="xsd:int"/>
+      <element name="tipodoc" type="xsd:int"/>
+      <element name="estdoc" type="xsd:string"/>
+      <element name="numdoc" type="xsd:int"/>
+      <element name="linea" type="xsd:string"/>
+      <element name="codigoarticulo" type="xsd:string"/>
+      <element name="partnumber" type="xsd:string"/>
+      <element name="serie" type="xsd:string"/>
+      <element name="descripcionarticulo" type="xsd:string"/>
+      <element name="cantidadlinea" type="xsd:float"/>
+      <element name="preciounitario" type="xsd:float"/>
+      <element name="ordencompra" type="xsd:string"/>
+      <element name="notaventa" type="xsd:int"/>
+      <element name="observacion" type="xsd:string"/>
+      <element name="codigomoneda" type="xsd:int"/>
+      <element name="valormoneda" type="xsd:float"/>
+      <element name="glosamoneda" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="inputFactOCResponse">
+    <complexType>
+     <sequence>
+      <element name="inputFactOCReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="inputFactOCRequest">
+
+      <wsdl:part element="impl:inputFactOC" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="inputFactOCResponse">
+
+      <wsdl:part element="impl:inputFactOCResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="tecnoglobal">
+
+      <wsdl:operation name="inputFactOC">
+
+         <wsdl:input message="impl:inputFactOCRequest" name="inputFactOCRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:inputFactOCResponse" name="inputFactOCResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="tecnoglobalSoapBinding" type="impl:tecnoglobal">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="inputFactOC">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="inputFactOCRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="inputFactOCResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="tecnoglobalService">
+
+      <wsdl:port binding="impl:tecnoglobalSoapBinding" name="tecnoglobal">
+
+         <wsdlsoap:address location="http://localhost:8080/webserver/services/tecnoglobal"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,430 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<% 	
+
+String empresas_id="";
+String contactos_id="";
+
+String did =(String)request.getAttribute("did");
+
+
+String nom1 =(String)request.getAttribute("nom1");
+String rut1 =(String)request.getAttribute("rut1");
+String id1 =(String)request.getAttribute("id1");
+String dir1 =(String)request.getAttribute("dir1");
+String reg1 =(String)request.getAttribute("reg1");
+String com1 =(String)request.getAttribute("com1");
+String cui1 =(String)request.getAttribute("cui1");
+
+String nom2 =(String)request.getAttribute("nom2");
+String rut2 =(String)request.getAttribute("rut2");
+String id2 =(String)request.getAttribute("id2");
+String dir2 =(String)request.getAttribute("dir2");
+String reg2 =(String)request.getAttribute("reg2");
+String com2 =(String)request.getAttribute("com2");
+String cui2 =(String)request.getAttribute("cui2");
+
+String CONT_NOMBRE =(String)request.getAttribute("CONT_NOMBRE");
+String CONT_TELEFONO =(String)request.getAttribute("CONT_TELEFONO");
+String fecha =(String)request.getAttribute("fecha");
+
+String Usu_nom=(String)request.getAttribute("usuname");
+
+String[] ar_empresas =(String[]) request.getAttribute("ar_empresas");
+String[] ar_contactos =(String[]) request.getAttribute("ar_contactos");
+String[] ar_guias =(String[]) request.getAttribute("ar_guias");
+
+
+int numguias =0;
+
+if(ar_guias!=null && ar_guias.length>0) numguias= ar_guias.length;
+
+String condiciones=(String)request.getAttribute("condiciones");
+String obs=(String)request.getAttribute("obs");
+String ref=(String)request.getAttribute("ref");
+
+
+if(condiciones==null) condiciones="";
+if(obs==null) obs="";
+if(ref==null) ref="";
+
+
+
+
+
+
+
+
+String o_id=(String)request.getAttribute("o_id");
+String d_id=(String)request.getAttribute("d_id");
+
+String clientes_id =(String)request.getAttribute("clientes_id");
+////////////////DATOS DE ORIGEN /////////////////////
+
+
+String ORIGEN_DIRE_DIRECCION =(String)request.getAttribute("ORIGEN_DIRE_DIRECCION");
+String ORIGEN_empresas_razonsocial =(String)request.getAttribute("ORIGEN_empresas_razonsocial");
+String ORIGEN_empresas_id =(String)request.getAttribute("ORIGEN_empresas_id");
+String ORIGEN_empresas_rut =(String)request.getAttribute("ORIGEN_empresas_rut");
+String ORIGEN_DIRE_CIUDAD =(String)request.getAttribute("ORIGEN_DIRE_CIUDAD");
+String ORIGEN_COMU_NOMBRE =(String)request.getAttribute("ORIGEN_COMU_NOMBRE");
+String ORIGEN_REGI_NOMBRE =(String)request.getAttribute("ORIGEN_REGI_NOMBRE");
+
+////////////////DATOS DE DESTINO /////////////////////
+
+
+String DESTINO_DIRE_DIRECCION =(String)request.getAttribute("DESTINO_DIRE_DIRECCION");
+String DESTINO_empresas_razonsocial =(String)request.getAttribute("DESTINO_empresas_razonsocial");
+String DESTINO_empresas_id =(String)request.getAttribute("DESTINO_empresas_id");
+String DESTINO_empresas_rut =(String)request.getAttribute("DESTINO_empresas_rut");
+String DESTINO_DIRE_CIUDAD =(String)request.getAttribute("DESTINO_DIRE_CIUDAD");
+String DESTINO_COMU_NOMBRE =(String)request.getAttribute("DESTINO_COMU_NOMBRE");
+String DESTINO_REGI_NOMBRE =(String)request.getAttribute("DESTINO_REGI_NOMBRE");
+
+
+
+
+
+
+
+    %>
+<!DOCTYPE html>
+<html lang="en"><head>
+<% 
+  if(request.getParameter("sg")!=null && !request.getParameter("sg").equals("")){
+  		if(request.getParameter("sg").equals("OK")){
+			out.println("<script>alert('- DEBE INGRESAR GUIAS.')</script>");
+			//out.println("<script>window.location = '/001/'</script>");
+		} 
+		
+	}
+   
+	%>
+    <meta charset="utf-8">
+    <title>New Office - Guia de Despacho Traslado Activos Normal</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css">
+   <link rel="stylesheet" type="text/css" href="stylesheets/theme.css">
+   <link rel="stylesheet" type="text/css" href="stylesheets/butons.css">
+   <link rel="stylesheet" type="text/css" href="stylesheets/inputs.css">
+    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css">
+
+    <script src="lib/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/801/lib/jquery.Rut.min.js"></script>
+
+    <!-- Demo page code -->
+
+    <style type="text/css">
+        #line-chart {
+            height:300px;
+            width:800px;
+            margin: 0px auto;
+            margin-top: 1em;
+        }
+        .brand { font-family: georgia, serif; }
+        .brand .first {
+            color: #ccc;
+            font-style: italic;
+        }
+        .brand .second {
+            color: #fff;
+            font-weight: bold;
+        }
+    </style>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+ 
+ <style type="text/css">
+        #line-chart {
+            height:300px;
+            width:800px;
+            margin: 0px auto;
+            margin-top: 1em;
+        }
+       
+        .amarillo{
+			border-color: #FFFF00;
+			background-color: #FFFF00;
+		}
+		.amarillo:focus{
+		border-color: #F4FA58;
+		box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #F0EC33;
+		}
+        .brand { font-family: georgia, serif; }
+        .brand .first {
+            color: #ccc;
+            font-style: italic;
+        }
+        .brand .second {
+            color: #fff;
+            font-weight: bold;
+        }
+		table{
+			font-size:20px;
+			}
+	tbody {
+	  
+	    height: 120px;
+	    overflow-y: scroll;
+	}
+	thead, tbody {
+		 min-width:100%;
+    	display: inline-block;
+    	
+	}
+		select{
+			width:225px;
+				}
+		
+	@media screen and (min-width: 700px) {
+	.cuadroblanco{
+			box-shadow:0px 2px 5px 0px rgba(50, 50, 50, 0.75);
+			border: 1px solid black;
+			min-height:100%; height:330px;  
+		min-width: 350px;
+			max-width:1200px;
+position: relative;
+background:#CCC;
+margin: 0 auto;
+		}
+		.inputMovil{
+			width:100%;
+		}
+
+	}
+	@media screen and (max-width: 699px) {
+		.cuadroblanco{
+			min-width:100%; 
+			 height:100px; min-height:250px;width:350px;
+			background:#FFF;
+			position: relative;
+
+		}
+		.inputMovil{
+			width:100%;
+		}
+		.content{
+			min-width: 1px;
+			}
+
+	}
+    </style>
+    <script type="text/javascript"> 
+	//arreglo de contactos
+	var cont_ar =new Array();
+	<% for(int i =0; i<ar_contactos.length; i++){ %>
+			cont_ar[<%=i%>]="<%=ar_contactos[i]%>";
+	<% } %>
+    $( document ).ready(function() {
+    	
+		$('#cont_id').on('change', function() {
+			var cont_seleccionada= $(this).val();
+			for(var ii=0; ii< cont_ar.length;ii++){
+				var c_ar =cont_ar[ii].split("/");
+				if(c_ar[0]==cont_seleccionada){
+					$('#cont_phone').val(c_ar[3]);
+					$('#cont_mail').val(c_ar[4]);
+					break;
+				}
+			}
+		});
+		$('#cont_id').change();
+    });
+
+        function validateSubmit(){
+        	
+        	var validate= true;
+        	var msg="ERRORES: \n";
+        	
+        	if(document.getElementById('obs').value==""){
+        		msg+="DEBE INGRESAR LA OBSERVACION\n";
+        		validate=false;
+        	}
+        	if(document.getElementById('ref').value==""){
+        		msg+="DEBE INGRESAR LA NUMERO DE TICKET\n";
+        		validate=false;
+        	}   
+        	if(<%=numguias%> == 0){
+        		msg+="DEBE INGRESAR GUIAS.";
+        		validate=false;	
+        	}
+        	if(validate){
+        		return true;
+        	}else{
+        		alert(msg);
+        		return false;
+        	}
+        }
+    </script>
+      <script type="text/javascript">
+    
+    function VerificaGuias(){
+    	if(<%=numguias%> == 0){
+    		alert('- DEBE INGRESAR GUIAS.');
+    		return false;	
+    	}else{
+    		return true;
+    	}
+    }
+    </script>
+  </head>
+
+  <!--[if lt IE 7 ]> <body class="ie ie6"> <![endif]-->
+  <!--[if IE 7 ]> <body class="ie ie7 "> <![endif]-->
+  <!--[if IE 8 ]> <body class="ie ie8 "> <![endif]-->
+  <!--[if IE 9 ]> <body class="ie ie9 "> <![endif]-->
+  <!--[if (gt IE 9)|!(IE)]><!--> 
+ 
+  
+  <body class=""> 
+  <!--<![endif]-->
+
+    
+<div class="navbar">
+	<div class="brand">
+	  <img src="lib/bootstrap/img/logonew_big.png">
+	</div>
+	<div class="version" align="right">
+	  <p>N823.I.02.001</p>
+	</div>
+	<form method="get" action="iperusu" style="margin: 0px 0px 0px 0px;">       
+		<button type="submit" name="logout" id="logout" class="btn btn-danger pull-right" style="margin-right: 5px; margin-top:5px;">CERRAR SESIÓN</button>
+	</form>  
+	<button type="button" class="btn btn-danger pull-right" style="margin-right: 5px; margin-top:5px;" onclick="location='/823/iguia_search'">VOLVER</button> 
+	<div align="center" class="title">
+		<p >INGRESAR GUIA DE DESPACHO TRASLADO ACTIVOS NORMAL</p>
+	</div>
+</div>
+<div class="content" >
+  <form action="iguia" name="form1" id="form1" method="post" >
+ 	<input type="hidden" name="o_id" value="<%=request.getAttribute("o_id")  %>">
+ 	<input type="hidden" name="d_id" value="<%=request.getAttribute("d_id")  %>">
+  <input type="hidden" style="width:100px;height:30px ;background:#FFF;" name="clientes_id" value="<%=clientes_id%>" >
+  <input type="hidden" style="width:100px;height:30px ;background:#FFF;" name="did" value="<%=did%>" >
+	<div class=" cuadroblanco" style="height:80px;">
+		<div class="divhead"><strong>NRO.GUIA:</strong><input  type="text" style="width:100px;height:30px ;background:#FFF;" disabled="disabled" value="ND"></div>
+		<div class="divhead"><strong>FECHA:</strong><input  type="text" style="width:150px;height:30px ;background:#FFF;" disabled="disabled" value="<%=fecha%>"></div>
+		<div class="divhead"><strong>CONTROL GUIA:</strong><input type="text" maxlength="30" style="width:350px;height:30px ;background:#FFF" disabled="disabled" value="POR EMITIR" ></div>
+		<div class="divhead"><strong>EMISOR:</strong><select name="empresas_id" id="empresas_id" style="margin:0px 0px 0px 0px;" >
+				<% for(int i =0; i<ar_empresas.length; i++){
+					String[] empresas = ar_empresas[i].split("/");%>
+				<option value="<%=empresas[0]%>"<% if(empresas_id.equals(empresas[0]))%><%="selected"%>><%=empresas[1] %></option>
+			<% } %>
+    		</select><span class="cabecera" style="color:#F00">*</span></div>
+		<div class="divhead"><strong>ESTADO SII:</strong><input type="text" style="width:150px;height:30px ;background:#FFF;" disabled="disabled" value="NO ENVIADA"></div>
+	</div>
+
+	<div class=" cuadroblanco" style="height:190px;margin-top: 5px;">
+		<h3 class="subtitle" align="center" style="margin:0px 0px 0px 0px"><p style="margin:0px 0px;font-size:20px;background-color: #39F">DATOS ORIGEN</p></h3>
+		<div class="divhead"><strong>RAZON SOCIAL:</strong><input type="text" style="width:600px;height:30px ;background:#FFF;" disabled="disabled" value="<%=ORIGEN_empresas_razonsocial%>"></div>
+		<div class="divhead"><strong>RUT:</strong><input type="text" style="width:145px;height:30px ;background:#FFF;" disabled="disabled" value="<%=ORIGEN_empresas_rut%>" ></div>
+		<div class="divhead"><strong>COD CLIENTE:</strong><input type="text" style="width:70px;height:30px ;background:#FFF;" disabled="disabled" value="<%=ORIGEN_empresas_id%>" ></div>
+		<div class="divhead"><strong>DIRECCION:</strong><input type="text" style="width:500px;height:30px ;background:#FFF;" disabled="disabled" value="<%=ORIGEN_DIRE_DIRECCION%>"></div>
+		<div class="divhead"><strong>REGION:</strong><input type="text" style="width:450px;height:30px ;background:#FFF;" disabled="disabled" value="<%=ORIGEN_REGI_NOMBRE%>"></div>
+		<div class="divhead"><strong>COMUNA:</strong><input type="text" style="width:250px;height:30px ;background:#FFF;" disabled="disabled" value="<%=ORIGEN_COMU_NOMBRE%>" ></div>		
+		<div class="divhead"><strong>CIUDAD:</strong><input type="text" style="width:250px;height:30px ;background:#FFF;" disabled="disabled" value="<%=ORIGEN_DIRE_CIUDAD%>" ></div>
+		<div class="divhead"><strong>RESPONSABLE CUENTA:</strong><input type="text" id="resp" style="width:350px;height:30px ;background:#FFF;" disabled="disabled" value=""></div>
+	</div> 
+	
+	<div class=" cuadroblanco" style="height:190px;margin-top: 5px;">
+		<h3 class="subtitle" align="center" style="margin:0px 0px 0px 0px"><p style="margin:0px 0px;font-size:20px;background-color: #39F">DATOS DESTINO</p></h3>
+		<div class="divhead"><strong>RAZON SOCIAL:</strong><input type="text" style="width:600px;height:30px ;background:#FFF;" disabled="disabled" value="<%=DESTINO_empresas_razonsocial%>"></div>
+		<div class="divhead"><strong>RUT:</strong><input type="text" name="empresas_rut" id="empresas_rut" style="width:145px;height:30px ;background:#FFF;" disabled="disabled" value="<%=DESTINO_empresas_rut%>" ></div>
+		<div class="divhead"><strong>COD CLIENTE:</strong><input type="text" style="width:70px;height:30px ;background:#FFF;" disabled="disabled" value="<%=DESTINO_empresas_id%>" ></div>
+		<div class="divhead"><strong>DIRECCION:</strong><input type="text" style="width:500px;height:30px ;background:#FFF;" disabled="disabled" value="<%=DESTINO_DIRE_DIRECCION%>"></div>
+		<div class="divhead"><strong>REGION:</strong><input type="text" style="width:450px;height:30px ;background:#FFF;" disabled="disabled" value="<%=DESTINO_REGI_NOMBRE%>"></div>
+		<div class="divhead"><strong>COMUNA:</strong><input type="text" style="width:250px;height:30px ;background:#FFF;" disabled="disabled" value="<%=DESTINO_COMU_NOMBRE%>" ></div>		
+		<div class="divhead"><strong>CIUDAD:</strong><input type="text" style="width:250px;height:30px ;background:#FFF;" disabled="disabled" value="<%=DESTINO_DIRE_CIUDAD%>" ></div>
+		<div class="divhead"><strong>RESPONSABLE CUENTA:</strong><input type="text" id="resp" style="width:350px;height:30px ;background:#FFF;" disabled="disabled" value=""></div>
+	</div> 
+	
+	<div class=" cuadroblanco" style="height:120px;margin-top: 5px;">
+		<h3 class="subtitle" align="center" style="margin:0px 0px 0px 0px"><p style="margin:0px 0px;font-size:20px;background-color: #39F">DATOS CONTACTO</p></h3>
+		<div class="divhead"><strong>CONTACTO:</strong><select name="cont_id" id="cont_id" style="margin:0px 0px 0px 0px; width: 366px">
+				<% for(int i =0; i<ar_contactos.length; i++){
+					String[] contactos = ar_contactos[i].split("/");%>
+				<option value="<%=contactos[0]%>"<% if(contactos_id.equals(contactos[0]))%><%="selected"%>><%=contactos[1] %></option>
+			<% } %>
+    		</select><span class="cabecera" style="color:#F00">*</span></div>
+		<div class="divhead"><strong>E-MAIL:</strong><input type="text" id="cont_mail" style="width:350px;height:30px ;background:#FFF;" disabled="disabled" value=""></div>
+		<div class="divhead"><strong>TELEFONO:</strong><input type="text" id="cont_phone" style="width:150px;height:30px ;background:#FFF;" disabled="disabled" value=""></div>
+				
+		
+	</div>
+
+	<div class=" cuadroblanco" style="height:250px;margin-top: 5px;">
+		<h3 class="subtitle" align="center" style="margin:0px 0px 0px 0px"><p style="margin:0px 0px;font-size:20px;background-color: #39F">DATOS ACTIVOS TRASLADOS</p></h3>
+		<table class="table">
+			<thead style="border: 1px solid black;">
+			   <tr style="background-color:#0101DF;color:#FFFFFF">
+				<td width="80" style="font-size:20px"><strong>ID</strong></td>
+				<td width="850" style="font-size:20px"><strong>DESCRIPCION</strong></td>
+				<td width="200" style="font-size:20px"><strong>UBICACION</strong></td>
+				<td width="200" style="font-size:20px"><strong>SERIE</strong></td>
+				<td width="200" style="font-size:20px"><strong>FECHA</strong></td>
+			  </tr>  
+			<tbody id="fbody" class="scroll" style="border: 1px solid black">
+			<%    
+			 int valor=0;
+				if(ar_guias!=null)
+					for(int i =0; i<ar_guias.length; i++){
+				    	String[] Guias = ar_guias[i].split("/");
+			%>
+			<tr class="hov">
+				<td width="80"><%=Guias[0]%>
+					<input type="hidden" value="<%=Guias[1]%>" name="detguias[]">
+					<input type="hidden" style="width:700px;height:30px" value="<%=Guias[0]%>/<%=Guias[2]%>/<%=Guias[3]%>/<%=Guias[4]%>/<%=Guias[5]%>/<%=Guias[7]%>/<%=Guias[8]%>" name="tras_id[]"></td>
+				<td width="850"><%=Guias[2]%> - <%=Guias[3]%></td>
+				<td width="200"><%=Guias[7]%></td>
+				<td width="200"><%=Guias[5]%></td>
+				<td width="200"><%=Guias[6]%></td>
+			</tr>
+			<% } %>
+			</tbody>
+			
+		  </table>
+	<div class="bgrabar">
+		<button type="submit" name="agregarguias" id="agregarguias" class="btn btn-success" onclick="$('#form1').attr('action', 'iguia_tras'); return true;" >AGREGAR</button>
+	</div>
+	</div>
+
+	<div class=" cuadroblanco" style="height:150px;margin-top: 5px;">
+		<div class="divhead"><strong>NUMERO DE TICKET:</strong><input type="text" name="ref" maxlength="255" id="ref" value="<%=ref %>" class="amarillo"style="width:750px;height:30px ;background:#FF3;" ><span class="cabecera" style="color:#F00">*</span></div>
+		<div class="divhead"><strong>FORMA TRASLADO:</strong><input type="text" name="obs" maxlength="255" id="obs" value="<%=obs %>" class="amarillo" style="width:720px;height:30px ;background:#FF3;"><span class="cabecera" style="color:#F00">*</span></div>
+		<div class="divhead"><strong>OBSERVACION 2:</strong><input type="text" name="obs2" style="width:720px;height:30px ;background:#FFF;" value="SOLO TRASLADO NO CONSTITUYE VENTA" disabled></div>
+		<div class="bgrabar">
+          <button type="submit" value="graba" name="grabar" id="grabar" class="btn btn-success" onclick="return validateSubmit();" >GRABAR</button>
+       </div> 
+	</div>
+</form>
+</div><br><br><br>
+<div class="footerapp">               
+	<p style="float: left;"><i class="icon-user"></i><strong><%=Usu_nom %></strong></p>
+	<button type="button" onclick="window.open('/003/','_blank')" class="btn btn-danger pull-right" style="margin-right: 5px; margin-top:2px;">MENU</button>
+</div>
+
+    <script src="lib/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript">
+        $("[rel=tooltip]").tooltip();
+        $(function() {
+            $('.demo-cancel-click').click(function(){return false;});
+        });
+    </script>
+    
+  </body>
+</html>
+
+

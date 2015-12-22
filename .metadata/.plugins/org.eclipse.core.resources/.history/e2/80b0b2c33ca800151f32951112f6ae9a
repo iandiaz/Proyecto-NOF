@@ -1,0 +1,9 @@
+	
+	function grabar(){
+	  	
+        $.post( "getOCsAsync", { id_comprador:id_comprador,id_proveedor:id_proveedor })
+        .done(function( data ) {
+        	
+          		
+        });
+    }

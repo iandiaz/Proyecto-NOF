@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;inc3_803.jsp&apos; to &apos;inc3_803.jsp&apos;&#x0A;- Original project: &apos;841&apos;&#x0A;- Destination element: &apos;inc3_803.jsp&apos;&#x0A;- Original element: &apos;inc3_803.jsp&apos;" description="Copy file" element1="WebContent/inc3_803.jsp" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1414131521974" target="/841/WebContent/inc3_803.jsp" units="0" version="1.0"/>
+</session>

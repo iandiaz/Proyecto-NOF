@@ -1,0 +1,9 @@
+	
+	function grabar(){
+	  	
+        $.post( "grabarRCAsync", $( "#form1" ).serialize())
+        .done(function( data ) {
+        	
+          		
+        });
+    }

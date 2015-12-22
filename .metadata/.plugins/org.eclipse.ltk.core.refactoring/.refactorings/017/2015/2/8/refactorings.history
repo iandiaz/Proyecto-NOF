@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 3 elements from project &apos;017&apos;&#x0A;- Original project: &apos;017&apos;&#x0A;- Original elements:&#x0A;     Rcontrato.java&#x0A;     rptcontratos.java&#x0A;     rpt_contrato.jsp" description="Delete elements" element1="WebContent/rpt_contrato.jsp" element2="/src&lt;{rptcontratos.java" element3="/src&lt;{Rcontrato.java" elements="2" flags="589830" id="org.eclipse.jdt.ui.delete" resources="1" stamp="1424096006502" subPackages="false" version="1.0"/>
+</session>

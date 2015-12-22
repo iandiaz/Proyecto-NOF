@@ -1,0 +1,185 @@
+package J.AJAX.F;
+
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import Constantes.Constantes;
+import Constantes.Controlador;
+import DAO.AlertEventTriggeredDAO;
+import DAO.OCDetallesDAO;
+import DAO.OCsDAO;
+import VO.ActivoVO;
+import VO.ContactoVO;
+import VO.DireccionVO;
+import VO.EmpresaVO;
+import VO.EstadosVigNoVigVO;
+import VO.OcDetalleVO;
+import VO.OcVO;
+import VO.ProductoVO;
+import VO.RecepcionCompraDetalleVO;
+import VO.RecepcionCompraVO;
+
+
+/**
+ * Servlet implementation class getDireccionesSelect
+ */
+@WebServlet("/grabarOCAsync")
+public class grabarOCAsync extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public grabarOCAsync() {
+        super();
+        
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		mt(request,response);
+	}
+
+	public void mt(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+		
+		
+		
+		System.out.println("GRABANDO ASYNC");
+		
+		//==========TRAEMOS SB =========///
+		
+		response.setCharacterEncoding("UTF-8");
+		
+		HttpSession session =request.getSession(true);
+		RecepcionCompraVO rc=null;
+		
+		rc = (RecepcionCompraVO)session.getAttribute("rc");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(rc==null){
+			out.println("ERROR");
+		}
+		else{
+			
+			saveRCStatus(rc,request);
+			/*
+			//damos vuelta las fechas 
+			oc.setFec_emision(inverseFec(oc.getFec_emision()));
+			oc.setFec_recepcion(inverseFec(oc.getFec_recepcion()));
+			
+			oc.setEstadoVigNoVig(new EstadosVigNoVigVO("1"));
+			oc.setCliente(new EmpresaVO("123"));
+			oc.setDireccion(new DireccionVO("763"));
+			oc.setContacto(new ContactoVO("1931"));
+			//insertamos sb
+			
+			String id=OCsDAO.insertOc(oc, Controlador.getUsuIDSession(request));
+			//ahora insertamos los detalles
+			if(id!=null){
+				oc.setId(id);
+				for(OcDetalleVO detalleoc:oc.getDetalle_oc()){
+					detalleoc.setOc(new OcVO(oc.getId()));
+					OCDetallesDAO.insertOcDetalle(detalleoc,Controlador.getUsuIDSession(request));
+				}
+				
+				AlertEventTriggeredDAO.insert(Constantes.MODULOID, Constantes.PINGRESAR, Controlador.getUsuIDSession(request), oc.getNro(), oc.getId()+"");
+				session.invalidate();
+				out.println("OK");
+			}
+			else{
+				out.println("ERROR");
+			}*/
+			
+			
+		}
+		
+	}
+	public String inverseFec(String fechaIn){
+		//ENTRA EN FORMATO DD-MM-YYYY
+		String fec_inverted="";
+		String ar_fec[]=fechaIn.split("-");
+		fec_inverted=ar_fec[2]+"-"+ar_fec[1]+"-"+ar_fec[0];
+		return fec_inverted;
+	}
+	public void saveRCStatus(RecepcionCompraVO rc, HttpServletRequest request){
+		//save encabezado 
+		
+		String rc_fecha= request.getParameter("rc_fecha").trim();
+		String rc_tcambio_ref= request.getParameter("rc_tcambio_ref").trim();
+		
+		String rc_nro_gd= request.getParameter("rc_nro_gd").trim();
+		String rc_fecha_gd= request.getParameter("rc_fecha_gd").trim();
+		String rc_total_gd= request.getParameter("rc_total_gd").trim();
+		
+		String rc_nro_fact= request.getParameter("rc_nro_fact").trim();
+		String rc_fecha_fact= request.getParameter("rc_fecha_fact").trim();
+		String rc_total_fact= request.getParameter("rc_total_fact").trim();
+		String id_oc= request.getParameter("id_oc").trim();
+		
+		rc.setFec_recepcion(rc_fecha);
+		rc.setTcambio_ref(Double.parseDouble(rc_tcambio_ref));
+		
+		rc.setNro_guia_despacho(rc_nro_gd);
+		rc.setFec_guia_despacho(rc_fecha_gd);
+		rc.setTotal_guia_despacho(Integer.parseInt(rc_total_gd));
+		
+		rc.setNro_factura(rc_nro_fact);
+		rc.setFecha_factura(rc_fecha_fact);
+		rc.setTotal_factura(Integer.parseInt(rc_total_fact));
+		rc.setOrdencompra(new OcVO(id_oc));
+		
+		//traemos lista original de productos para la orden seleccionada 
+		
+		OcDetalleVO ocdet_filter=new OcDetalleVO();
+		ocdet_filter.setOc(new OcVO(id_oc));
+		ocdet_filter.setEstadoVigNoVig(new EstadosVigNoVigVO("1"));
+		
+		ArrayList<OcDetalleVO> arr_detOC = OCDetallesDAO.getOCDetalles(ocdet_filter);
+		
+		ArrayList<RecepcionCompraDetalleVO> rc_detalles= new ArrayList<RecepcionCompraDetalleVO>();
+		//save detalle 
+		
+		for(OcDetalleVO detalle_oc :arr_detOC){
+			//iteramos cantidad series 
+			String series[]=request.getParameterValues(detalle_oc.getProducto().getId()+"_series");
+			for(String serie:series){
+				RecepcionCompraDetalleVO rc_detalle = new RecepcionCompraDetalleVO();
+				
+				ActivoVO activo = new ActivoVO();
+				activo.setSerie(serie);
+				
+				rc_detalle.setActivo(activo);
+				rc_detalle.setRc(new RecepcionCompraVO(rc.getId()));
+				rc_detalle.setDetalle_oc(new OcDetalleVO(detalle_oc.getId()));
+				rc_detalle.setProducto(new ProductoVO(detalle_oc.getProducto().getId()));
+				rc_detalle.setPrecio(Double.parseDouble(detalle_oc.getPrecio_unit()));
+				rc_detalles.add(rc_detalle);
+				
+			}
+			
+		}
+		
+		rc.setDetalle_rc(rc_detalles);
+		
+	}
+}

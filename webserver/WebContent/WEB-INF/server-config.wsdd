@@ -1,0 +1,106 @@
+<ns1:deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <ns1:parameter name="attachments.Directory" value="/Users/David/Documents/Cod Fuente/WorkJ2EE/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/webserver/WEB-INF/attachments"/>
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="boleta" provider="java:RPC" style="wrapped" use="literal">
+  <ns2:operation name="inputEncUAI" qname="ns1:inputEncUAI" returnQName="ns1:inputEncUAIReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://webserver" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+   <ns2:parameter qname="ns1:RUTCliente" type="xsd:string"/>
+   <ns2:parameter qname="ns1:RSCliente" type="xsd:string"/>
+   <ns2:parameter qname="ns1:GiroCliente" type="xsd:string"/>
+   <ns2:parameter qname="ns1:DirCliente" type="xsd:string"/>
+   <ns2:parameter qname="ns1:ComCliente" type="xsd:string"/>
+   <ns2:parameter qname="ns1:CiuCliente" type="xsd:string"/>
+   <ns2:parameter qname="ns1:Email" type="xsd:string"/>
+   <ns2:parameter qname="ns1:n_proceso" type="xsd:int"/>
+   <ns2:parameter qname="ns1:Monto_precio" type="xsd:int"/>
+   <ns2:parameter qname="ns1:Fecha" type="xsd:dateTime"/>
+   <ns2:parameter qname="ns1:id_producto" type="xsd:int"/>
+  </ns2:operation>
+  <ns1:parameter name="allowedMethods" value="inputEncUAI"/>
+  <ns1:parameter name="wsdlPortType" value="boleta"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://webserver"/>
+  <ns1:parameter name="wsdlServicePort" value="boleta"/>
+  <ns1:parameter name="className" value="webserver.boleta"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://webserver"/>
+  <ns1:parameter name="wsdlServiceElement" value="boletaService"/>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:service name="tecnoglobal" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="inputFactOC" qname="ns2:inputFactOC" returnQName="ns2:inputFactOCReturn" returnType="xsd:string" soapAction="" xmlns:ns2="http://webserver" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns2:fechadoc" type="xsd:string"/>
+   <ns1:parameter qname="ns2:rut" type="xsd:string"/>
+   <ns1:parameter qname="ns2:sucursal" type="xsd:int"/>
+   <ns1:parameter qname="ns2:tipodoc" type="xsd:int"/>
+   <ns1:parameter qname="ns2:estdoc" type="xsd:string"/>
+   <ns1:parameter qname="ns2:numdoc" type="xsd:int"/>
+   <ns1:parameter qname="ns2:linea" type="xsd:string"/>
+   <ns1:parameter qname="ns2:codigoarticulo" type="xsd:string"/>
+   <ns1:parameter qname="ns2:partnumber" type="xsd:string"/>
+   <ns1:parameter qname="ns2:serie" type="xsd:string"/>
+   <ns1:parameter qname="ns2:descripcionarticulo" type="xsd:string"/>
+   <ns1:parameter qname="ns2:cantidadlinea" type="xsd:float"/>
+   <ns1:parameter qname="ns2:preciounitario" type="xsd:float"/>
+   <ns1:parameter qname="ns2:ordencompra" type="xsd:string"/>
+   <ns1:parameter qname="ns2:notaventa" type="xsd:int"/>
+   <ns1:parameter qname="ns2:observacion" type="xsd:string"/>
+   <ns1:parameter qname="ns2:codigomoneda" type="xsd:int"/>
+   <ns1:parameter qname="ns2:valormoneda" type="xsd:float"/>
+   <ns1:parameter qname="ns2:glosamoneda" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="inputFactOC"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="tecnoglobal"/>
+  <ns1:parameter name="className" value="webserver.tecnoglobal"/>
+  <ns1:parameter name="wsdlServicePort" value="tecnoglobal"/>
+  <ns1:parameter name="schemaQualified" value="http://webserver"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://webserver"/>
+  <ns1:parameter name="wsdlServiceElement" value="tecnoglobalService"/>
+ </ns1:service>
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+   <ns1:handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+ <ns1:transport name="local">
+  <ns1:responseFlow>
+   <ns1:handler type="LocalResponder"/>
+  </ns1:responseFlow>
+ </ns1:transport>
+</ns1:deployment>

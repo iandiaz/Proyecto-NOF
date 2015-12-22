@@ -1,0 +1,9 @@
+	
+	function grabar(){
+	  	
+        $.post( "grabarRCAsync", { })
+        .done(function( data ) {
+        	
+          		
+        });
+    }

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 3 elements to &apos;WebContent&apos;&#x0A;- Original project: &apos;007&apos;&#x0A;- Destination element: &apos;WebContent&apos;&#x0A;- Original elements:&#x0A;     images&#x0A;     stylesheets&#x0A;     lib" description="Copy folders" element1="WebContent/images" element2="WebContent/stylesheets" element3="WebContent/lib" files="0" flags="589830" folders="3" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1447077292721" target="/024/WebContent" units="0" version="1.0"/>
+</session>

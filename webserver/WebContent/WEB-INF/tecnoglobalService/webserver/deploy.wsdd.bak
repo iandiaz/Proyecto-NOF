@@ -1,0 +1,47 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from tecnoglobalService WSDL service -->
+
+  <service name="tecnoglobal" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://webserver"/>
+      <parameter name="wsdlServiceElement" value="tecnoglobalService"/>
+      <parameter name="schemaQualified" value="http://webserver"/>
+      <parameter name="wsdlServicePort" value="tecnoglobal"/>
+      <parameter name="className" value="webserver.TecnoglobalSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="tecnoglobal"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="inputFactOC" qname="operNS:inputFactOC" xmlns:operNS="http://webserver" returnQName="retNS:inputFactOCReturn" xmlns:retNS="http://webserver" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:fechadoc" xmlns:pns="http://webserver" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:rut" xmlns:pns="http://webserver" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:sucursal" xmlns:pns="http://webserver" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:tipodoc" xmlns:pns="http://webserver" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:estdoc" xmlns:pns="http://webserver" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:numdoc" xmlns:pns="http://webserver" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:linea" xmlns:pns="http://webserver" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:codigoarticulo" xmlns:pns="http://webserver" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:partnumber" xmlns:pns="http://webserver" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:serie" xmlns:pns="http://webserver" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:descripcionarticulo" xmlns:pns="http://webserver" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:cantidadlinea" xmlns:pns="http://webserver" type="tns:float" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:preciounitario" xmlns:pns="http://webserver" type="tns:float" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:ordencompra" xmlns:pns="http://webserver" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:notaventa" xmlns:pns="http://webserver" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:observacion" xmlns:pns="http://webserver" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:codigomoneda" xmlns:pns="http://webserver" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:valormoneda" xmlns:pns="http://webserver" type="tns:float" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:glosamoneda" xmlns:pns="http://webserver" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="inputFactOC"/>
+
+  </service>
+</deployment>

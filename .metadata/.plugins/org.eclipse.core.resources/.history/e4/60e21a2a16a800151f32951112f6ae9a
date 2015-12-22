@@ -1,0 +1,94 @@
+package J.AJAX.F;
+
+
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import Constantes.Constantes;
+import Constantes.Controlador;
+import DAO.AlertEventTriggeredDAO;
+import DAO.OCDetallesDAO;
+import DAO.OCsDAO;
+import VO.ContactoVO;
+import VO.DireccionVO;
+import VO.EmpresaVO;
+import VO.EstadoAprobacionVO;
+import VO.EstadosVigNoVigVO;
+import VO.OcDetalleVO;
+import VO.OcVO;
+import VO.ProductoVO;
+import VO.TipoMonedaVO;
+
+
+/**
+ * Servlet implementation class getDireccionesSelect
+ */
+@WebServlet("/modificarOCAsync")
+public class modificarOCAsync extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public modificarOCAsync() {
+        super();
+        
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 mt(request,response);
+	}
+
+	public void mt(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+		
+		
+		
+		System.out.println("MODIFICANDO ASYNC");
+		
+		//==========TRAEMOS SB =========///
+		
+		response.setCharacterEncoding("UTF-8");
+		
+		
+		PrintWriter out = response.getWriter();
+		
+		String id_est_autorizacion= request.getParameter("id_est_autorizacion").trim();
+		String id= request.getParameter("id").trim();
+			
+		   	OcVO oc_filter = new OcVO();
+		   	oc_filter.setId(id);
+		   	oc_filter.setEstado_aprobacion(new EstadoAprobacionVO(id_est_autorizacion));
+		   	
+		   	
+			//insertamos sb
+			
+			OCsDAO.updateOc(oc_filter,Controlador.getUsuIDSession(request));
+			
+			
+			
+		
+		
+	}
+	
+	
+}

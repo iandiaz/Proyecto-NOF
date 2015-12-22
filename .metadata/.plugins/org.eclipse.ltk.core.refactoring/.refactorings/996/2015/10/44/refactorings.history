@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 2 packages to &apos;007/src&apos;&#x0A;- Original project: &apos;996&apos;&#x0A;- Destination element: &apos;007/src&apos;&#x0A;- Original elements:&#x0A;     996/src/J.AJAX.F&#x0A;     996/src/Constantes" description="Copy packages" destination="=007/src" element1="/src&lt;J.AJAX.F" element2="/src&lt;Constantes" flags="589830" fragments="2" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1445861478261" version="1.0"/>
+</session>

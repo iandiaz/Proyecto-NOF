@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 2 elements from project &apos;999&apos;&#x0A;- Original project: &apos;999&apos;&#x0A;- Original elements:&#x0A;     bootstrap.css.LCK&#x0A;     jquery-1.7.2.min.js.LCK" description="Delete elements" element1="WebContent/lib/bootstrap/css/bootstrap.css.LCK" element2="WebContent/lib/jquery-1.7.2.min.js.LCK" elements="0" flags="589830" id="org.eclipse.jdt.ui.delete" resources="2" stamp="1446902263993" subPackages="false" version="1.0"/>
+</session>

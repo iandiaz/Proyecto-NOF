@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;getEmpresasAsync.java&apos; to &apos;031/src/J.AJAX.F&apos;&#x0A;- Original project: &apos;007&apos;&#x0A;- Destination element: &apos;031/src/J.AJAX.F&apos;&#x0A;- Original element: &apos;J.AJAX.F.getEmpresasAsync.java&apos;" description="Copy compilation unit" destination="=031/src&lt;J.AJAX.F" element1="/src&lt;J.AJAX.F{getEmpresasAsync.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1450189218639" units="1" version="1.0"/>
+</session>

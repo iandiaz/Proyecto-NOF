@@ -1,0 +1,38 @@
+function validateGrabar(){
+		var validate =true; 
+		var msg="";
+		if($('#confe_nombre').val()==""){
+			validate=false; 
+			msg+="DEBE INGRESAR UN NOMBRE A LA CONFIGURACION<br>";
+		}	
+		
+		
+		if(!validate){
+			$('#msg').html(msg);
+			$('#mensaje').modal('show');
+		} 
+		
+		return validate;
+	}
+	
+	function grabar(){
+		
+
+		if(!validateGrabar()) return ;
+		$('.loaded').hide();
+		$('.loading').show();
+		
+		$.post( "grabarOCAsync", $( "#form1" ).serialize())
+	        .done(function( data ) {
+	        	  if(data.trim()=="OK") {
+	        		  alert("OPERACION REALIZADA CON EXITO");
+	        		  location="N<%=Constantes.MODULO%>_1_01_001";  
+	        	  }
+	        	  else{
+	        			alert(data);
+	        		 	$('.loaded').show();
+	        			$('.loading').hide();
+	        	  } 
+	        	  
+	        });
+	}

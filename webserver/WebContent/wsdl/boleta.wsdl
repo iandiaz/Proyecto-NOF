@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://webserver" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://webserver" xmlns:intf="http://webserver" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://webserver" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="inputEncUAI">
+    <complexType>
+     <sequence>
+      <element name="RUTCliente" type="xsd:string"/>
+      <element name="RSCliente" type="xsd:string"/>
+      <element name="GiroCliente" type="xsd:string"/>
+      <element name="DirCliente" type="xsd:string"/>
+      <element name="ComCliente" type="xsd:string"/>
+      <element name="CiuCliente" type="xsd:string"/>
+      <element name="Email" type="xsd:string"/>
+      <element name="n_proceso" type="xsd:int"/>
+      <element name="Monto_precio" type="xsd:int"/>
+      <element name="Fecha" type="xsd:dateTime"/>
+      <element name="id_producto" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="inputEncUAIResponse">
+    <complexType>
+     <sequence>
+      <element name="inputEncUAIReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="inputEncUAIRequest">
+
+      <wsdl:part element="impl:inputEncUAI" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="inputEncUAIResponse">
+
+      <wsdl:part element="impl:inputEncUAIResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="boleta">
+
+      <wsdl:operation name="inputEncUAI">
+
+         <wsdl:input message="impl:inputEncUAIRequest" name="inputEncUAIRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:inputEncUAIResponse" name="inputEncUAIResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="boletaSoapBinding" type="impl:boleta">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="inputEncUAI">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="inputEncUAIRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="inputEncUAIResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="boletaService">
+
+      <wsdl:port binding="impl:boletaSoapBinding" name="boleta">
+
+         <wsdlsoap:address location="http://localhost:8080/webserver/services/boleta"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

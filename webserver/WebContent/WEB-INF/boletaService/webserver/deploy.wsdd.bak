@@ -1,0 +1,39 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from boletaService WSDL service -->
+
+  <service name="boleta" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://webserver"/>
+      <parameter name="wsdlServiceElement" value="boletaService"/>
+      <parameter name="schemaQualified" value="http://webserver"/>
+      <parameter name="wsdlServicePort" value="boleta"/>
+      <parameter name="className" value="webserver.BoletaSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="boleta"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="inputEncUAI" qname="operNS:inputEncUAI" xmlns:operNS="http://webserver" returnQName="retNS:inputEncUAIReturn" xmlns:retNS="http://webserver" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:RUTCliente" xmlns:pns="http://webserver" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:RSCliente" xmlns:pns="http://webserver" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:GiroCliente" xmlns:pns="http://webserver" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:DirCliente" xmlns:pns="http://webserver" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:ComCliente" xmlns:pns="http://webserver" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:CiuCliente" xmlns:pns="http://webserver" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:Email" xmlns:pns="http://webserver" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:n_proceso" xmlns:pns="http://webserver" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:Monto_precio" xmlns:pns="http://webserver" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:Fecha" xmlns:pns="http://webserver" type="tns:dateTime" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:id_producto" xmlns:pns="http://webserver" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="inputEncUAI"/>
+
+  </service>
+</deployment>

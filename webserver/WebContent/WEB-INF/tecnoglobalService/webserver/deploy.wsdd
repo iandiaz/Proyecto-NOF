@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from tecnoglobalService WSDL service -->
+
+  <service name="tecnoglobal" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://webserver"/>
+      <parameter name="wsdlServiceElement" value="tecnoglobalService"/>
+      <parameter name="schemaQualified" value="http://webserver"/>
+      <parameter name="wsdlServicePort" value="tecnoglobal"/>
+      <parameter name="className" value="webserver.tecnoglobal"/>
+      <parameter name="wsdlPortType" value="tecnoglobal"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://webserver" xmlns:retNS="http://webserver" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="inputFactOC" qname="operNS:inputFactOC" returnQName="retNS:inputFactOCReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://webserver" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:fechadoc" type="tns:string"/>
+        <parameter xmlns:pns="http://webserver" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:rut" type="tns:string"/>
+        <parameter xmlns:pns="http://webserver" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:sucursal" type="tns:int"/>
+        <parameter xmlns:pns="http://webserver" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:tipodoc" type="tns:int"/>
+        <parameter xmlns:pns="http://webserver" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:estdoc" type="tns:string"/>
+        <parameter xmlns:pns="http://webserver" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:numdoc" type="tns:int"/>
+        <parameter xmlns:pns="http://webserver" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:linea" type="tns:string"/>
+        <parameter xmlns:pns="http://webserver" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:codigoarticulo" type="tns:string"/>
+        <parameter xmlns:pns="http://webserver" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:partnumber" type="tns:string"/>
+        <parameter xmlns:pns="http://webserver" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:serie" type="tns:string"/>
+        <parameter xmlns:pns="http://webserver" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:descripcionarticulo" type="tns:string"/>
+        <parameter xmlns:pns="http://webserver" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:cantidadlinea" type="tns:float"/>
+        <parameter xmlns:pns="http://webserver" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:preciounitario" type="tns:float"/>
+        <parameter xmlns:pns="http://webserver" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:ordencompra" type="tns:string"/>
+        <parameter xmlns:pns="http://webserver" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:notaventa" type="tns:int"/>
+        <parameter xmlns:pns="http://webserver" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:observacion" type="tns:string"/>
+        <parameter xmlns:pns="http://webserver" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:codigomoneda" type="tns:int"/>
+        <parameter xmlns:pns="http://webserver" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:valormoneda" type="tns:float"/>
+        <parameter xmlns:pns="http://webserver" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:glosamoneda" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="inputFactOC"/>
+
+  </service>
+</deployment>

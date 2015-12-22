@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workingSetManager>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1443446620421_1" label="DEV-PROD SYNC" name="DEV-PROD SYNC">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/001" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/003" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/004" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/007" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/010" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/011" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/014" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/023" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/024" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/025" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/030" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/031" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/032" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/033" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/070" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/071" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/072" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/302" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/701" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/800" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/823" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/831" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/870" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/994" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/996" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/999" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/webserver" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/webserverClient" type="4"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1443446707280_3" label="NO SYNC" name="NO SYNC">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/016" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/702" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/012" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/995" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/003" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/801" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/831" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/301" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/021" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/811" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/017" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/824" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/880" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/013" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/703" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/304" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/802" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/022" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/403" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/008" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/804" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/812" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/018" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/001" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/821" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/005" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/890" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/009" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/303" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/860" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/997" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/803" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/704" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/015" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/822" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/850" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/006" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/841" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/998" type="4"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1443446802882_5" label="EARS" name="EARS">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF704EAR" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF009EAR_v5" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF821EAR_v15" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF998EAR_v6" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF997EAR_v2" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF016EAR_V1" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF890EAR" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF018EAR" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF702EAR_v8" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF824EAR_v15" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF021EAR" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF303EAR" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF823EAR_v36" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF804EAR_v9" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF822EAR_v14" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF009EAR_v7" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF022EAR" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF004EAR_v31" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOFwebserverEAR_v3" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF001EAR_v10" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF013EAR_v3" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF803EAR_v11" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF811EAR_v6" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF703EAR" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF870EAR_v1" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF403EAR" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF010EAR_v21" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF800EAR_v34" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF072EAR" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF860EAR" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF996EAR_v32" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF880EAR" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF017EAR_V3" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF014EAR_v6" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF850EAR_v6" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF995EAR_v9" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF071EAR" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF841EAR" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF995EAR_v8" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF011EAR_v10" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF003EAR_v7" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF005EAR_v30" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF831EAR" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF023EAR_v1" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF301EAR" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF801EAR_v33" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF802EAR_v17" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF006EAR_v20" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF008EAR_v22" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF994EAR" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF012EAR_v2" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF812EAR_v6" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF304EAR" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF015EAR" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NOF070EAR" type="4"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1443446822292_6" label="SERVER" name="SERVER">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/RemoteSystemsTempFiles" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Servers" type="4"/>
+</workingSet>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1418617546462_0" label="Window Working Set" name="Aggregate for window 1418617546461"/>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1443446711013_4" label="Multiple Working Sets" name="Aggregate:DEV-PROD:NO SYNC:">
+<workingSet IMemento.internal.id="DEV-PROD SYNC"/>
+<workingSet IMemento.internal.id="NO SYNC"/>
+</workingSet>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1443446824701_7" label="Multiple Working Sets" name="Aggregate:DEV-PROD:EARS:NO SYNC:SERVER:">
+<workingSet IMemento.internal.id="DEV-PROD SYNC"/>
+<workingSet IMemento.internal.id="EARS"/>
+<workingSet IMemento.internal.id="NO SYNC"/>
+<workingSet IMemento.internal.id="SERVER"/>
+</workingSet>
+<mruList name="DEV-PROD SYNC"/>
+</workingSetManager>

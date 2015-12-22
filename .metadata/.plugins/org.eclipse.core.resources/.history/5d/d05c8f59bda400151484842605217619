@@ -1,0 +1,18 @@
+function validateGrabar(){
+		var validate =true; 
+		var msg="";
+		if($('#confe_nombre').val()==""){
+			validate=false; 
+			msg+="DEBE INGRESAR UN NOMBRE A LA CONFIGURACION<br>";
+		}	
+		
+		
+		if(!validate){
+			$('#msg').html(msg);
+			$('#mensaje').modal('show');
+		} 
+		
+		return validate;
+	}
+	
+	

@@ -1,0 +1,8 @@
+#Tomcat publish data
+#Mon Dec 21 21:41:54 CLT 2015
+org.eclipse.jst.jee.server\:031=/Users/David/Programas/apache-tomcat-7.0.54/wtpwebapps/031
+org.eclipse.jst.jee.server\:030=/Users/David/Programas/apache-tomcat-7.0.54/wtpwebapps/030
+org.eclipse.jst.jee.server\:003=/Users/David/Programas/apache-tomcat-7.0.54/wtpwebapps/003
+org.eclipse.jst.jee.server\:001=/Users/David/Programas/apache-tomcat-7.0.54/wtpwebapps/001
+org.eclipse.jst.jee.server\:033=/Users/David/Programas/apache-tomcat-7.0.54/wtpwebapps/033
+org.eclipse.jst.jee.server\:032=/Users/David/Programas/apache-tomcat-7.0.54/wtpwebapps/032
